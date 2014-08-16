@@ -12,7 +12,7 @@ class VisibilityManagerMixin(object):
 
     def __init__(self, *args, **kwargs):
         self.visible = kwargs['visible']
-        super().__init__(*args, **kwargs)
+        super(VisibilityManagerMixin, self).__init__(*args, **kwargs)
 
     def get_queryset(self):
         return super().get_queryset()
