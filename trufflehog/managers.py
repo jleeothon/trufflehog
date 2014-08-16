@@ -1,6 +1,9 @@
 from django.db import models
 
 
+__all__ = ['VisibilityManagerMixin', 'VisibilityManager']
+
+
 class VisibilityManagerMixin(object):
     """
     This manager should be used with a model that implements the Hideable
@@ -14,6 +17,7 @@ class VisibilityManagerMixin(object):
     def get_queryset(self):
         return super().get_queryset()
             .filter(hidden__isnull=self.visible)
+
 
 class VisibilityManager(VisibilityManagerMixin, models.Manager):
     pass
