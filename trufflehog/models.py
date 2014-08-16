@@ -39,8 +39,8 @@ class DateTraceable(models.Model):
 
 class Hideable(models.Model):
     """
-    An abstract model mixin that let's you trace the date of creation and
-    updating.
+    An abstract model mixin that let's you trace date and time of hiding
+    (pseudo-deletion).
     """
 
     hidden = models.DateTimeField(
@@ -53,13 +53,9 @@ class Hideable(models.Model):
     class Meta:
         abstract = True
 
-    # objects = models.Manager()
-    # hidden = VisibilityManager(visible=False)
-    # visible = VisibilityManager(visible=True)
-
     @property
     def is_hidden(self):
-        return bool(self.hidden)
+        return self.hidden is not None
 
     def hide(self):
         now = timezone.now()
