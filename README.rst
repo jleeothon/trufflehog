@@ -3,3 +3,92 @@ trufflehog
 ==========
 
 Keep track of creation, update and deletion of models. Like a hog tracks their truffles!
+
+    **Disclaimer.** There is probably other libraries and snippets out there to keep track of changes in a model instance. This is no more than yet another implementation. Any similarity with code elsewhere is a mere coincidence.
+
+------------
+Installation
+------------
+
+This was developed using:
+
+- Django 1.6
+- Python 3
+
+I cannot guarantee it will work for anything older than that, but it probably works for later versions.
+
+Now, install the latest version using pip_::
+
+    pip install git+git://github.com/jleeothon/trufflehog/
+
+.. _pip: https://pypi.python.org/pypi/pip
+
+-----
+Usage
+-----
+
+    **Warning.** Until release of version 1.0, API is bound to change.
+
+~~~~~~
+Models
+~~~~~~
+
+There are two ``Model`` subclasses that you can mix into your models: ``DateTraceable`` and ``Hideable``. The former adds two datetime fields to the model: ``created`` and ``updated``.
+
+To include either or both in a model, mix-in this classes like this::
+
+    # models.py
+    
+    from django.db import models
+    from django.db.models import Model
+    from trufflehog, import DateTracreable, Hideable
+    
+    class HappyHog(DateTraceable, Hideable, Model):
+        name = models.CharField(max_length=100)
+        happiness = models.IntegerField()
+
+Check the datetime of creation and edition with ``happy_hog.created`` and ``happy_hog.updated`` given that ``happy_hog = HappyHog()``.
+
+When checking whether or not a model is hidden, ``happy_hog.hidden`` will return the datetime of deletion and can be used as a boolean test. If a boolean variable is strictly necessary, you could use ``happy_hog.is_hidden``.
+
+~~~~~~~~
+Managers
+~~~~~~~~
+
+Add a manager to peek into only hidden or only visible model instances::
+
+    # models.py
+    
+    import trufflehog
+    
+    class HappyHog(DateTraceable, Hideable, Model):
+        # some fields here
+        
+        hidden_objects = trufflehog.VisibilityManager(visible=False)
+        visible_objects = trufflehog.VisibilityManager(visible=True)
+
+But if you want to override the default ``objects`` manager::
+
+    objects = trufflehog.VisibilityManager(visible=True)
+
+You can also create your own custom managers by mixing-in ``VisibilityManagerMixin``::
+
+    # mymanagers.py
+    
+    from django.db import models
+    import trufflehog.managers
+    
+    class SuperHappyHogManager(trufflehog.managers.VisibilityManagerMixin, models.Manager):
+        def get_queryset(self):
+            """
+            Only queries on hogs whose happiness is over 9000.
+            """
+            q = super(HappyHogManager, self).get_queryset()
+            q = q.filter(happiness__gt=9000)
+            return q
+
+------
+Thanks
+------
+
+Well, thanks. At least for reading this. Also, if you file an issue or contribute to this repository, have my thanks beforehand. Any good or bad ideas or comments are appreciated.
