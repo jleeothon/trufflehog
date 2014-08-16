@@ -1,7 +1,7 @@
 from django.db import models
 
 
-__all__ = ['VisibilityManagerMixin', 'VisibilityManager']
+__all__ = ['VisibilityManager', 'VisibilityManagerMixin']
 
 
 class VisibilityManagerMixin(object):
@@ -11,7 +11,7 @@ class VisibilityManagerMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self.visible = kwargs.pop('visible', True)
+        self.visible = kwargs['visible']
         super().__init__(*args, **kwargs)
 
     def get_queryset(self):
