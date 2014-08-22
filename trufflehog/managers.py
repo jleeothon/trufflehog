@@ -15,8 +15,7 @@ class VisibilityManagerMixin(object):
         super(VisibilityManagerMixin, self).__init__(*args, **kwargs)
 
     def get_queryset(self):
-        return super().get_queryset()
-            .filter(hidden__isnull=self.visible)
+        return super().get_queryset().filter(hidden__isnull=self.visible)
 
 
 class VisibilityManager(VisibilityManagerMixin, models.Manager):
