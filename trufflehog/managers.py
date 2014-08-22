@@ -11,7 +11,7 @@ class VisibilityManagerMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self.visible = kwargs['visible']
+        self.visible = kwargs.pop('visible')
         super(VisibilityManagerMixin, self).__init__(*args, **kwargs)
 
     def get_queryset(self):
