@@ -30,12 +30,12 @@ class DateTraceable(models.Model):
     class Meta:
         abstract = True
 
-    def trace_date(self):
+    def save(self):
         now = timezone.now()
         if not self.pk:
             self.created = now
         self.updated = now
-
+        super().save()
 
 class Hideable(models.Model):
     """
