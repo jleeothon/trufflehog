@@ -2,7 +2,7 @@
 trufflehog
 ==========
 
-Keep track of creation, update and deletion of models. Like a hog tracks their truffles!
+Keep track of creation, update and hiding of models
 
     **Disclaimer.** There is probably other libraries and snippets out there to keep track of changes in a model instance. This is no more than yet another implementation. Any similarity with code elsewhere is a mere coincidence.
 
@@ -12,16 +12,21 @@ Installation
 
 This was developed using:
 
-- Django 1.6
-- Python 3
+- Django 1.7
+- Python 3.4
 
 I cannot guarantee it will work for anything older than that, but it probably works for later versions.
 
-Now, install the latest version using pip_::
+Install the latest official release using pip_::
+
+    pip install django-trufflehog
+
+.. _pip: https://pypi.python.org/pypi/pip
+
+You can install the latest development version using pip::
 
     pip install git+git://github.com/jleeothon/trufflehog/
 
-.. _pip: https://pypi.python.org/pypi/pip
 
 -----
 Usage
@@ -35,7 +40,7 @@ Models
 
 There are two ``Model`` subclasses that you can mix into your models: ``DateTraceable`` and ``Hideable``. The former adds two datetime fields to the model: ``created`` and ``updated``.
 
-To include either or both in a model, mix-in this classes like this::
+To include either or both in a model, mix-in these classes like this::
 
     # models.py
     
@@ -47,7 +52,7 @@ To include either or both in a model, mix-in this classes like this::
         name = models.CharField(max_length=100)
         happiness = models.IntegerField()
 
-Check the datetime of creation and edition with ``happy_hog.created`` and ``happy_hog.updated`` given that ``happy_hog = HappyHog()``.
+Given there exists ``happy_hog = HappyHog(name="Moccus")``, check the datetime of creation and edition with ``happy_hog.created`` and ``happy_hog.updated``.
 
 When checking whether or not a model is hidden, ``happy_hog.hidden`` will return the datetime of deletion and can be used as a boolean test. If a boolean variable is strictly necessary, you could use ``happy_hog.is_hidden``.
 
