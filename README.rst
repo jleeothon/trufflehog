@@ -28,9 +28,6 @@ Installation
 This was developed using:
 
 - Django 1.7
-- Python 3.4
-
-I cannot guarantee it will work for anything older than that, but it probably works for later versions.
 
 Install the latest official release using pip_::
 
@@ -46,8 +43,6 @@ You can install the latest development version using pip::
 -----
 Usage
 -----
-
-    **Warning.** Until release of version 1.0, API is bound to change.
 
 ~~~~~~
 Models
