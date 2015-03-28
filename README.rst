@@ -4,7 +4,8 @@ trufflehog
 
 Keep track of creation, update and hiding of models
 
-    **Disclaimer.** There is probably other libraries and snippets out there to keep track of changes in a model instance. This is no more than yet another implementation. Any similarity with code elsewhere is a mere coincidence.
+.. image:: https://travis-ci.org/jleeothon/trufflehog.svg?branch=master
+    :target: https://travis-ci.org/jleeothon/trufflehog
 
 ------------
 Installation
