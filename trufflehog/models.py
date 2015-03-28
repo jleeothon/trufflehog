@@ -59,4 +59,3 @@ class Hideable(models.Model):
 
     def hide(self):
         now = timezone.now()
-
