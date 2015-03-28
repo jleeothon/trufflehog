@@ -4,7 +4,21 @@ trufflehog
 
 Keep track of creation, update and hiding of models
 
-.. image:: https://travis-ci.org/jleeothon/trufflehog.svg?branch=master
+|version| |python_version| |downloads| |build|
+
+.. |version| image:: https://pypip.in/version/django-trufflehog/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/django-trufflehog/
+    :alt: Latest release
+
+.. |python_version| image:: https://pypip.in/py_versions/django-trufflehog/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/django-trufflehog/
+    :alt: Python versions
+    
+.. |downloads| image:: https://pypip.in/download/django-trufflehog/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/django-trufflehog/
+    :alt: Downloads
+
+.. |build| image:: https://travis-ci.org/jleeothon/trufflehog.svg?branch=master
     :target: https://travis-ci.org/jleeothon/trufflehog
 
 ------------
